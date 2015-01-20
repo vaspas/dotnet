@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C82AC62E-0CFF-4299-A716-632D7D20B79D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modules</RootNamespace>
+    <AssemblyName>Modules</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arithmetic\MultiplyConstModuleFloat.cs" />
+    <Compile Include="ChannelsCommutatorModule.cs" />
+    <Compile Include="ChannelsFakeModule.cs" />
+    <Compile Include="DelayerModule.cs" />
+    <Compile Include="MandatoryBlockModule.cs" />
+    <Compile Include="SetBlockSizeContinuousModule.cs" />
+    <Compile Include="Generator\ZeroDataModule.cs" />
+    <Compile Include="SubBlockModule.cs" />
+    <Compile Include="DemultiplexerModuleFloat.cs" />
+    <Compile Include="DemultiplexerModuleInt.cs" />
+    <Compile Include="Generator\MasterFrequencyModule.cs" />
+    <Compile Include="FromByteArrayModule.cs" />
+    <Compile Include="ToByteArrayModule.cs" />
+    <Compile Include="Network\UdpGroupClientModule.cs" />
+    <Compile Include="Network\UdpClientModule.cs" />
+    <Compile Include="Network\UdpServerModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetBlockSizeModule.cs" />
+    <Compile Include="Transforms\ComplexModModuleFloat.cs" />
+    <Compile Include="Transforms\ComplexArgModuleFloat.cs" />
+    <Compile Include="Transforms\Fourier\FourierTransformModuleFloat.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sigflow\Sigflow.csproj">
+      <Project>{18823010-951D-49DE-A59F-B495E31F082E}</Project>
+      <Name>Sigflow</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(SolutionDir)bin\$(ConfigurationName)\"
+xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

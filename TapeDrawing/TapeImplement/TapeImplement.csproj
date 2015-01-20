@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F125B83D-FB7F-4382-9FAE-615A6BF06A77}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TapeImplement</RootNamespace>
+    <AssemblyName>TapeImplement</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\TapeDrawingKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
+    <Compile Include="CoordGridRenderers\BaseCoordGridRenderer.cs" />
+    <Compile Include="CoordGridRenderers\CoordHelper.cs" />
+    <Compile Include="CoordGridRenderers\CoordInterruptGridRenderer.cs" />
+    <Compile Include="CoordGridRenderers\CoordInterruptTextRenderer.cs" />
+    <Compile Include="CoordGridRenderers\CoordUnitBaseRenderer.cs" />
+    <Compile Include="CoordGridRenderers\CoordUnitGridRenderer.cs" />
+    <Compile Include="CoordGridRenderers\CoordUnitTextRenderer.cs" />
+    <Compile Include="CoordGridRenderers\CoordInterrupt.cs" />
+    <Compile Include="CoordGridRenderers\ICoordinateSource.cs" />
+    <Compile Include="CoordGridRenderers\ICoordInterrupt.cs" />
+    <Compile Include="CoordGridRenderers\ScaleGridRenderer.cs" />
+    <Compile Include="CoordGridRenderers\ScaleTextRenderer.cs" />
+    <Compile Include="CoordGridRenderers\Unit.cs" />
+    <Compile Include="BufferedScalePosition.cs" />
+    <Compile Include="BoundedScalePosition.cs" />
+    <Compile Include="MouseListenerLayers\LinearScale\ShiftDiapazoneMouseWheelListener.cs" />
+    <Compile Include="MouseListenerLayers\PressedListener.cs" />
+    <Compile Include="MouseListenerLayers\SelectedRectangle\SelectedRectangleRenderer.cs" />
+    <Compile Include="MouseListenerLayers\TapeArea\TapeAreaRenderer.cs" />
+    <Compile Include="MouseListenerLayers\TapeArea\TapeRefAreaRenderer.cs" />
+    <Compile Include="MouseListenerLayers\TapeCursor\TapePositionCursorKeyboardKeyListener.cs" />
+    <Compile Include="MouseListenerLayers\TapeCursor\TapePositionCursorMouseWheelListener.cs" />
+    <Compile Include="MouseListenerLayers\TapeCursor\TapePositionCursorRenderer.cs" />
+    <Compile Include="ObjectRenderers\RecordMouseMoveListener.cs" />
+    <Compile Include="ObjectRenderers\RecordLineRenderer.cs" />
+    <Compile Include="ObjectRenderers\RecordTextRenderer.cs" />
+    <Compile Include="ObjectRenderers\RegionMouseMoveListener.cs" />
+    <Compile Include="ObjectRenderers\RegionFillRenderer.cs" />
+    <Compile Include="ObjectRenderers\RegionTextRenderer.cs" />
+    <Compile Include="ObjectRenderers\RegionBoardsRenderer.cs" />
+    <Compile Include="ObjectRenderers\PointImageRenderer.cs" />
+    <Compile Include="ObjectRenderers\Signals\SignalPointHolderMouseListener.cs" />
+    <Compile Include="ObjectRenderers\Signals\SignalPointMarksRenderer.cs" />
+    <Compile Include="ObjectRenderers\Signals\IIntegratedSignalSource.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleRenderers\ImageRenderer.cs" />
+    <Compile Include="SimpleRenderers\PredicateRendererDecorator.cs" />
+    <Compile Include="SimpleRenderers\FillRenderer.cs" />
+    <Compile Include="SimpleRenderers\FakeRenderer.cs" />
+    <Compile Include="SimpleRenderers\SwitchRenderer.cs" />
+    <Compile Include="SimpleScalePosition.cs" />
+    <Compile Include="IScaleDiapazone.cs" />
+    <Compile Include="IScalePosition.cs" />
+    <Compile Include="MouseListenerLayers\LinearScale\ShiftDiapazoneMouseMoveListener.cs" />
+    <Compile Include="MouseListenerLayers\LinearScale\ZoomDiapazoneMouseWheelListener.cs" />
+    <Compile Include="MouseListenerLayers\TapeCursor\TapeRefPositionCursorKeyboardKeyListener.cs" />
+    <Compile Include="MouseListenerLayers\TapeCursor\TapeRefPositionCursorMouseWheelListener.cs" />
+    <Compile Include="MouseListenerLayers\TapeCursor\TapeRefPositionCursorRenderer.cs" />
+    <Compile Include="ObjectRenderers\LinearScale\ScaleBase.cs" />
+    <Compile Include="ObjectRenderers\LinearScale\ScaleLinesRenderer.cs" />
+    <Compile Include="ObjectRenderers\LinearScale\ScaleTextRenderer.cs" />
+    <Compile Include="ObjectRenderers\RegionObjectRenderer.cs" />
+    <Compile Include="ObjectRenderers\IObjectSource.cs" />
+    <Compile Include="ObjectRenderers\PointObjectRenderer.cs" />
+    <Compile Include="ObjectRenderers\Signals\ISignalPointSource.cs" />
+    <Compile Include="ObjectRenderers\Signals\ISignalSource.cs" />
+    <Compile Include="ObjectRenderers\Signals\SignalPointRenderer.cs" />
+    <Compile Include="ObjectRenderers\Signals\SignalRenderer.cs" />
+    <Compile Include="SimpleRenderers\BorderRenderer.cs" />
+    <Compile Include="SimpleRenderers\FillAllRenderer.cs" />
+    <Compile Include="SimpleRenderers\TextRenderer.cs" />
+    <Compile Include="Tape.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\CoordGrid.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\Border.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\TapeCursor.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\TapeArea.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\TwoPointsInfoPanels.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\SignalPointSourceChangeDecorator.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\RectangleZoom.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\ScaleGrid.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\RefPositionArea.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\RefPositionCursor.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\RefPositionRectangle.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\NullLineChanger.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\SignalPointSourceFilterDecorator.cs" />
+    <Compile Include="TapeModels\Kuges\Extensions\TrackInfo.cs" />
+    <Compile Include="TapeModels\Kuges\IExtension.cs" />
+    <Compile Include="TapeModels\Kuges\LayerArea\TwoPointsArea.cs" />
+    <Compile Include="TapeModels\Kuges\TapeModel.cs" />
+    <Compile Include="TapeModels\Kuges\TrackHost\BaseTrackHost.cs" />
+    <Compile Include="TapeModels\Kuges\TrackHost\ScrollTrackHost.cs" />
+    <Compile Include="TapeModels\Kuges\TrackHost\StackTrackHost.cs" />
+    <Compile Include="TapeModels\Kuges\TrackItem.cs" />
+    <Compile Include="TapeModels\Kuges\Track\EmptyTrackModel.cs" />
+    <Compile Include="TapeModels\Kuges\Track\ObjectTrackModel.cs" />
+    <Compile Include="TapeModels\Kuges\Track\DistScaleTrackModel.cs" />
+    <Compile Include="TapeModels\Kuges\Track\DataTrackModel.cs" />
+    <Compile Include="TapeModels\Kuges\Track\BaseTrackModel.cs" />
+    <Compile Include="TapeModels\Kuges\Track\FontSettings.cs" />
+    <Compile Include="TapeModels\Kuges\Track\LineSettings.cs" />
+    <Compile Include="TapeModels\Kuges\TrackSize.cs" />
+    <Compile Include="TapeModels\VagonPrint\Sources\IPrintSource.cs" />
+    <Compile Include="TapeModels\VagonPrint\Table\Column.cs" />
+    <Compile Include="TapeModels\VagonPrint\Table\Cell.cs" />
+    <Compile Include="TapeModels\VagonPrint\Table\Renderer.cs" />
+    <Compile Include="TapeModels\VagonPrint\Table\Row.cs" />
+    <Compile Include="TapeModels\VagonPrint\TapeModel.cs" />
+    <Compile Include="TapeModels\VagonPrint\TapeSettings.cs" />
+    <Compile Include="TapeModels\VagonPrint\TrackItem.cs" />
+    <Compile Include="TapeModels\VagonPrint\Track\BaseTrackModel.cs" />
+    <Compile Include="TapeModels\VagonPrint\Table\TableModel.cs" />
+    <Compile Include="TapeModels\VagonPrint\Track\DataTrackModel.cs" />
+    <Compile Include="TapeModels\VagonPrint\Track\DistScaleTrackModel.cs" />
+    <Compile Include="TapeModels\VagonPrint\Track\LineSettings.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\CoordGrid.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\CoordinateInfo.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\TapeInfo.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\TrackInfo.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\IObjectsNavigator.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\ObjectsNavigatorTrack.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\TrackKeySelector.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\SelectedTrack.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\MovableShadow.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\TrackObjects.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\ToolTip.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\DistScale.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\SelectedObjects.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\TapeArea.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\RefPositionCursor.cs" />
+    <Compile Include="TapeModels\Vagon\Extensions\ScaleGrid.cs" />
+    <Compile Include="TapeModels\Vagon\IExtension.cs" />
+    <Compile Include="TapeModels\Vagon\TapeModel.cs" />
+    <Compile Include="TapeModels\Vagon\ToolTip\ToolTipRenderer.cs" />
+    <Compile Include="TapeModels\Vagon\TrackItem.cs" />
+    <Compile Include="TapeModels\Vagon\TrackSize.cs" />
+    <Compile Include="TapeModels\Vagon\Track\BaseTrackModel.cs" />
+    <Compile Include="TapeModels\Vagon\Track\DataTrackModel.cs" />
+    <Compile Include="TapeModels\Vagon\Track\FontSettings.cs" />
+    <Compile Include="TapeModels\Vagon\Track\LineSettings.cs" />
+    <Compile Include="TapeModels\ZonesView\Extensions\RefPositionCursor.cs" />
+    <Compile Include="TapeModels\ZonesView\IExtension.cs" />
+    <Compile Include="TapeModels\ZonesView\TapeModel.cs" />
+    <Compile Include="TapeModels\ZonesView\TrackItem.cs" />
+    <Compile Include="TapeModels\ZonesView\TrackSize.cs" />
+    <Compile Include="TapeModels\ZonesView\Track\FontSettings.cs" />
+    <Compile Include="TapeModels\ZonesView\Track\LineSettings.cs" />
+    <Compile Include="TapeModels\ZonesView\Track\TrackModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TapeDrawing\TapeDrawing.csproj">
+      <Project>{E501C5C3-3B5D-4410-A14D-EDC092962809}</Project>
+      <Name>TapeDrawing</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TapeDrawingKey.snk">
+      <Link>TapeDrawingKey.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fadedBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(SolutionDir)bin\$(ConfigurationName)\"
+xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

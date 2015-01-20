@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2824AC6A-2D46-4C01-AB8B-AC9C3ADF2239}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ComparativeTapeTest</RootNamespace>
+    <AssemblyName>ComparativeTapeTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generators\CoordsGenerator\CoordSource.cs" />
+    <Compile Include="Generators\CoordsGenerator\BeginEndInterrupt.cs" />
+    <Compile Include="Generators\CoordsGenerator\Generator.cs" />
+    <Compile Include="Generators\CoordsGenerator\InterruptB.cs" />
+    <Compile Include="Generators\CoordsGenerator\InterruptA.cs" />
+    <Compile Include="Generators\CoordsGenerator\UnitRegion.cs" />
+    <Compile Include="Generators\GeneratorsFactory.cs" />
+    <Compile Include="Generators\ISourceId.cs" />
+    <Compile Include="Generators\NullLinesGenerator\Generator.cs" />
+    <Compile Include="Generators\NullLinesGenerator\NullLineShiftDecorator.cs" />
+    <Compile Include="Generators\NullLinesGenerator\NullLinesSource.cs" />
+    <Compile Include="Generators\RegionObjectsGenerator\TextRegion.cs" />
+    <Compile Include="Generators\RegionObjectsGenerator\Generator.cs" />
+    <Compile Include="Generators\RegionObjectsGenerator\ObjectSource.cs" />
+    <Compile Include="Generators\SignalGenerator\Generator.cs" />
+    <Compile Include="Generators\SignalGenerator\IntegratedMinMaxSignalSource.cs" />
+    <Compile Include="Generators\SignalGenerator\SignalSource.cs" />
+    <Compile Include="IMainLayerFactory.cs" />
+    <Compile Include="IWindow.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\TestPlayerRenderer.cs" />
+    <Compile Include="Tapes\ZonesViewTapeFactory.cs" />
+    <Compile Include="Tapes\VagonPrint\PrintSource.cs" />
+    <Compile Include="Tapes\VagonPrint\VagonPrintTapeFactory.cs" />
+    <Compile Include="Tapes\Types\TextRecord.cs" />
+    <Compile Include="Tapes\Types\RecordsSource.cs" />
+    <Compile Include="Tapes\Types\Record.cs" />
+    <Compile Include="Tapes\Types\Region.cs" />
+    <Compile Include="Tapes\Types\RegionsSource.cs" />
+    <Compile Include="Tapes\VagonHorizontalTapeFactory.cs" />
+    <Compile Include="Tapes\VagonVerticalTapeFactory.cs" />
+    <Compile Include="Tapes\CurvePanelLayers\GraphLayerFactory.cs" />
+    <Compile Include="Tapes\CurvePanelLayers\InfoTableLayerFactory.cs" />
+    <Compile Include="Tapes\CurvePanelLayers\TableTextRenderer.cs" />
+    <Compile Include="Tapes\Images\Provider.cs" />
+    <Compile Include="Tapes\KugesHorizontalTapeFactory.cs" />
+    <Compile Include="Tapes\HorizontalTapeFactory.cs" />
+    <Compile Include="Tapes\HorizontalTapeSettings.cs" />
+    <Compile Include="Tapes\TestPlayerTapeFactory.cs" />
+    <Compile Include="Windows\WinFormsDx11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\GdiPlusImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\GdiPlusDoubleBufferedStyle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\WinFormsDx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\WpfWindow.xaml.cs">
+      <DependentUpon>WpfWindow.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TapeDrawingSharpDx11\TapeDrawingSharpDx11.csproj">
+      <Project>{4F7FE54B-B470-4010-95F8-2ED8585DAA2B}</Project>
+      <Name>TapeDrawingSharpDx11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingWinFormsDx\TapeDrawingWinFormsDx.csproj">
+      <Project>{9FEB4BDA-F893-4BB4-A346-9C8A4DF168AA}</Project>
+      <Name>TapeDrawingWinFormsDx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingWinForms\TapeDrawingWinForms.csproj">
+      <Project>{7C2AB44A-A627-4E5A-8369-25C1983AF57C}</Project>
+      <Name>TapeDrawingWinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingWpf\TapeDrawingWpf.csproj">
+      <Project>{4FF83036-5A51-48E5-99A5-EC1721A9C9D3}</Project>
+      <Name>TapeDrawingWpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawing\TapeDrawing.csproj">
+      <Project>{E501C5C3-3B5D-4410-A14D-EDC092962809}</Project>
+      <Name>TapeDrawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeImplement\TapeImplement.csproj">
+      <Project>{F125B83D-FB7F-4382-9FAE-615A6BF06A77}</Project>
+      <Name>TapeImplement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Windows\WpfWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tapes\Images\mark.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tapes\Images\arrow.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tapes\Images\kolobok.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(SolutionDir)References\d3dx9_30.dll" "$(TargetDir)" /Y /Q</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

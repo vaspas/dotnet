@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C6E0085-0206-4C38-8FBE-04AC2AB1912C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ComparativeTest</RootNamespace>
+    <AssemblyName>ComparativeTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SharpDX">
+      <HintPath>..\References\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ITestWindow.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainLayerFactory.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\BackgroundRenderer.cs" />
+    <Compile Include="Renderers\PolygonRenderer.cs" />
+    <Compile Include="Renderers\ImageRenderer.cs" />
+    <Compile Include="Renderers\TextRenderer.cs" />
+    <Compile Include="Renderers\FillRectangleRenderer.cs" />
+    <Compile Include="Renderers\DrawRectangleRenderer.cs" />
+    <Compile Include="Renderers\LinesRenderer.cs" />
+    <Compile Include="Windows\WinFormsSharpDx2D1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\WinFormsSharpDx11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\WinFormsSharpDx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\WpfWindow.xaml.cs">
+      <DependentUpon>WpfWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WinFormsDx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\GdiPlusBufferedGraphics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\GdiPlusDoubleBufferedStyle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\GdiPlus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TapeDrawingSharpDx11\TapeDrawingSharpDx11.csproj">
+      <Project>{4F7FE54B-B470-4010-95F8-2ED8585DAA2B}</Project>
+      <Name>TapeDrawingSharpDx11</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingSharpDx2D1\TapeDrawingSharpDx2D1.csproj">
+      <Project>{B60A6AE0-5A81-448E-831F-7D2567ACE148}</Project>
+      <Name>TapeDrawingSharpDx2D1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingSharpDx\TapeDrawingSharpDx.csproj">
+      <Project>{4806CA99-3E7B-48F4-9364-2E841DD4752E}</Project>
+      <Name>TapeDrawingSharpDx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingWinFormsDx\TapeDrawingWinFormsDx.csproj">
+      <Project>{9FEB4BDA-F893-4BB4-A346-9C8A4DF168AA}</Project>
+      <Name>TapeDrawingWinFormsDx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingWinForms\TapeDrawingWinForms.csproj">
+      <Project>{7C2AB44A-A627-4E5A-8369-25C1983AF57C}</Project>
+      <Name>TapeDrawingWinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawingWpf\TapeDrawingWpf.csproj">
+      <Project>{4FF83036-5A51-48E5-99A5-EC1721A9C9D3}</Project>
+      <Name>TapeDrawingWpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TapeDrawing\TapeDrawing.csproj">
+      <Project>{E501C5C3-3B5D-4410-A14D-EDC092962809}</Project>
+      <Name>TapeDrawing</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Windows\WpfWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(SolutionDir)References\*.dll" "$(TargetDir)" /Y /Q</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--корневой узел в единственном экземпляре-->
+<schema>
+  <!--исполнитель для работы модулей, может быть несколько экземпляров-->
+  <performer id="main">
+    <beat id="mainbeat"/>
+    <module type="Modules.Generator.MasterFrequencyModule,Modules" id="master" beat="mainbeat">
+      <property name="IntervalMilliseconds">
+        <int>100</int>
+      </property>
+    </module>
+    <module type="IppModules.Generator.WhiteNoiseGeneratorModuleFloat,IppModules" id="whitenoise">
+      <property name="BlockSize">
+        <int>16</int>
+      </property>
+      <property name="Value">
+        <float>1</float>
+      </property>      
+      <module type="IppModules.AddOperatorModuleFloat,IppModules">
+        <in name="In[0]" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <in name="In[1]" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <module type="ConsoleGenerator.ConsoleOutputModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ConsoleGenerator">
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+          </in>
+        </module>
+      </module>
+    </module>    
+  </performer>
+</schema>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FFDE880D-31AD-42BB-9C7B-A2C110C09AD9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IppModules</RootNamespace>
+    <AssemblyName>IppModules</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddOperatorModuleFloat.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\CalcBandPassFiltersWrapper.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\DAnaliz.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\DAnalizBase.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\DCrossAnaliz.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\DecFir.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\FractionalOctaveAnalysisModule.cs" />
+    <Compile Include="Analiz\FractionalOctaveAnalysis\TerzTaps.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\AutoSpectrum\AutoSpectrum.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\AutoSpectrum\ComplexAutoSpectrum.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\AutoSpectrum\RealAutoSpectrum.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\NarrowBandComplexSpectrumModule.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\CrossSpectrum\ComplexCrossSpectrum.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\CrossSpectrum\CrossSpectrum.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\CrossSpectrum\RealCrossSpectrum.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\FastFourierTransform\ComplexFastFourierTransform.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\FastFourierTransform\IFastFourierTransform.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\FastFourierTransform\RealFastFourierTransform.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\NarrowBandSpectrumModule.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\SpectrumUnit.cs" />
+    <Compile Include="Analiz\NarrowBandSpectrum\WindowType.cs" />
+    <Compile Include="Avarage\LinearTimerAvarageModuleFloat.cs" />
+    <Compile Include="Avarage\ExponentialAvarangeModuleFloat.cs" />
+    <Compile Include="Avarage\LinearAvarageModuleFloat.cs" />
+    <Compile Include="ConvertIntToFloatModule.cs" />
+    <Compile Include="AddConstantModuleFloat.cs" />
+    <Compile Include="AddDataModuleFloat.cs" />
+    <Compile Include="ConvertFloatToIntModule.cs" />
+    <Compile Include="ConvertShortToFloatModule.cs" />
+    <Compile Include="ImpulseSid\ConcurrentWorker.cs" />
+    <Compile Include="ImpulseSid\ImpulseSidCorrelationModuleFloat.cs" />
+    <Compile Include="MultiplexerModuleFloat.cs" />
+    <Compile Include="SignalOverloadDetectorModuleFloat.cs" />
+    <Compile Include="SignalOverloadDetectorModuleInt.cs" />
+    <Compile Include="Generator\CosinusGeneratorModuleFloat.cs" />
+    <Compile Include="Generator\CreateImpulseModule.cs" />
+    <Compile Include="Generator\PinkNoiseGeneratorModuleFloat.cs" />
+    <Compile Include="Generator\TriangleGeneratorModuleFloat.cs" />
+    <Compile Include="Generator\WhiteNoiseGeneratorModuleFloat.cs" />
+    <Compile Include="DemultiplexerModuleFloat.cs" />
+    <Compile Include="DemultiplexerModuleInt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalResampling\SignalResamplingModule.cs" />
+    <Compile Include="ToDbConverterModuleFloat.cs" />
+    <Compile Include="Types\Complex.cs" />
+    <Compile Include="Types\Polar.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IppWrapper\IppWrapper.csproj">
+      <Project>{17915005-E919-4C8A-A9B5-96B448DDBAC7}</Project>
+      <Name>IppWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sigflow\Sigflow.csproj">
+      <Project>{18823010-951D-49DE-A59F-B495E31F082E}</Project>
+      <Name>Sigflow</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(SolutionDir)bin\$(ConfigurationName)\"
+xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(ProjectDir)References\CalcBandPassFilters.dll" "$(SolutionDir)bin\$(ConfigurationName)\x86\" /Y /Q</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

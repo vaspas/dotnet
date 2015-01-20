@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <performer id="main">
+    <beat>
+      <and id="mainbeat">
+      </and>
+    </beat>
+    <module type="IncModules.IncomtechModuleInt,IncModules" id="adc">
+      <properties>
+        <BoardNumber>0</BoardNumber>
+        <BlockSize>1024</BlockSize>
+        <ChannelsCount>4</ChannelsCount>
+        <ExternalSync>false</ExternalSync>
+        <Frequency>50000</Frequency>
+      </properties>
+      <property name="GainValues">
+        <ArrayOfGainValues>
+          <GainValues>Gain_0</GainValues>
+          <GainValues>Gain_0</GainValues>
+          <GainValues>Gain_0</GainValues>
+          <GainValues>Gain_0</GainValues>
+        </ArrayOfGainValues>
+      </property>
+      <property name="DeviceType">
+        <IncDevices>INK824</IncDevices>
+      </property>
+      <property name="StartMode">
+        <StartMode>Internal</StartMode>
+      </property>
+      <module type="ViewModules.SignalSourceAdapterModule`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillograph" iscollection="4">
+        <property name="Step">
+          <float>2</float>
+        </property>
+        <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+      </module>
+    </module>
+  </performer>
+</schema>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <performer id="main">
+    <beat>
+      <and id="mainbeat">
+        <property name="CountToImpulse">
+          <int>1</int>
+        </property>
+      </and>
+    </beat>
+    <module type="Modules.Network.UdpGroupClientModule,Modules" id="signal">
+      <properties>
+        <Port>5050</Port>
+        <GroupAddress>234.5.6.11</GroupAddress>
+        <SubscribeTtl>1</SubscribeTtl>
+      </properties>
+      <module type="Modules.FromByteArrayModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Modules">
+        <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Byte, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+          <decorateout type="Sigflow.Performance.DataWriterBeat`1[[System.Byte, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow" beat="mainbeat">
+          </decorateout>
+        </in>
+        <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillograph">
+          <property name="Step">
+            <float>2</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillographreadcontroller">
+            </decoratein>
+          </in>
+        </module>
+      </module>
+    </module>
+    <module type="ViewModules.FpsSignalReadControllerModule, ViewModules" id="fpscontroller">
+      <property name="Fps">
+        <float>25</float>
+      </property>
+    </module>
+  </performer>
+</schema>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{18823010-951D-49DE-A59F-B495E31F082E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sigflow</RootNamespace>
+    <AssemblyName>Sigflow</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dataflow\Block.cs" />
+    <Compile Include="Dataflow\Buffer.cs" />
+    <Compile Include="Dataflow\IBufferState.cs" />
+    <Compile Include="Dataflow\IChannel.cs" />
+    <Compile Include="Dataflow\IDecorator.cs" />
+    <Compile Include="Dataflow\INode.cs" />
+    <Compile Include="Dataflow\ISignalReader.cs" />
+    <Compile Include="Dataflow\ISignalWriter.cs" />
+    <Compile Include="Dataflow\MultiWriter.cs" />
+    <Compile Include="Dataflow\Node.cs" />
+    <Compile Include="Dataflow\NodeDecorator.cs" />
+    <Compile Include="Dataflow\ThreadSafeQueue.cs" />
+    <Compile Include="Module\ChangeModulePropertiesHelper.cs" />
+    <Compile Include="Module\IExecuteModule.cs" />
+    <Compile Include="Module\IMasterModule.cs" />
+    <Compile Include="Module\IModule.cs" />
+    <Compile Include="Performance\BeatsAnd.cs" />
+    <Compile Include="Performance\BeatsOr.cs" />
+    <Compile Include="Performance\BufferReaderBeat.cs" />
+    <Compile Include="Performance\DataReaderBeat.cs" />
+    <Compile Include="Performance\SignalWriterSwitch.cs" />
+    <Compile Include="Performance\DataWriterBeat.cs" />
+    <Compile Include="Performance\IBeat.cs" />
+    <Compile Include="Performance\IBeatCollection.cs" />
+    <Compile Include="Performance\Performer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\SchemaContainerThreadSafe.cs" />
+    <Compile Include="Schema\ISignalWriterCollector.cs" />
+    <Compile Include="Schema\PerformerContainer.cs" />
+    <Compile Include="Schema\SchemaContainer.cs" />
+    <Compile Include="Schema\SignalWriterCollector.cs" />
+    <Compile Include="Schema\Words.cs" />
+    <Compile Include="Schema\XmlBeatConnectionBuilder.cs" />
+    <Compile Include="Schema\XmlBeatFactory.cs" />
+    <Compile Include="Schema\XmlFillProperties.cs" />
+    <Compile Include="Schema\XmlModulesBuilder.cs" />
+    <Compile Include="Schema\XmlPerformerObjectsFactory.cs" />
+    <Compile Include="Schema\XmlSchemaFactory.cs" />
+    <Compile Include="Schema\XmlSchemaFactoryLogger.cs" />
+    <Compile Include="Schema\XmlSignalConnectionsBuilder.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(SolutionDir)bin\$(ConfigurationName)\"
+xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q
+xcopy "$(TargetDir)$(TargetName).pdb" "$(SolutionDir)bin\$(ConfigurationName)\" /Y /Q</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

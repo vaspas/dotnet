@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <performer id="main">
+    <property name="ThreadPriority">
+      <ThreadPriority>AboveNormal</ThreadPriority>
+    </property>
+    <beat>
+      <and id="mainbeat">
+        <property name="CountToImpulse">
+          <int>1</int>
+        </property>
+      </and>
+    </beat>
+    <module type="Modules.Generator.MasterFrequencyModule,Modules" beat="mainbeat">
+      <property name="IntervalMilliseconds">
+        <int>20</int>
+      </property>
+    </module>
+    <!--<module type="IppModules.Generator.PinkNoiseGeneratorModuleFloat,IppModules" id="whitenoise">
+      <property name="BlockSize">
+        <int>1024</int>
+      </property>
+      <property name="Value">
+        <float>1</float>
+      </property>  
+    </module>-->
+    <module type="IppModules.Generator.CosinusGeneratorModuleFloat,IppModules" id="signal">
+      <property name="BlockSize">
+        <int>1024</int>
+      </property>
+      <property name="Value">
+        <float>1</float>
+      </property>
+      <property name="Phase">
+        <float>0</float>
+      </property>
+      <property name="RelativeFrequency">
+        <float>0.0489501953125</float>
+      </property>
+    </module>
+    <!--<module type="Modules.Generator.ZeroDataModuleFloat, Modules" id="zero">
+      <property name="BlockSize">
+        <int>1024</int>
+      </property>
+    </module>-->
+   <!--<module type="Modules.Generator.ZeroDataModuleFloat, Modules" id="zero2">
+      <property name="BlockSize">
+        <int>100</int>
+      </property>
+    </module>-->
+    <!-- первое фурье преобразование-->
+    <module type="IppModules.Analiz.NarrowBandSpectrum.NarrowBandSpectrumModule, IppModules">
+      <property name="BlockSizePower2">
+        <unsignedShort>10</unsignedShort>
+      </property>
+      <property name="Fqu">
+        <float>1024</float>
+      </property>
+      <property name="ReadBlockSizePower2">
+        <unsignedShort>10</unsignedShort>
+      </property>
+      <property name="SpectrumUnit">
+        <SpectrumUnit>Pwr</SpectrumUnit>
+      </property>
+      <property name="WinType">
+        <WindowType>Hann</WindowType>
+      </property>
+      <in name="In" source="signal.Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+      <!-- просмотр Re-->
+      <module type="IppModules.AddConstantModuleFloat,IppModules">
+        <property name="Constant">
+          <float>-50</float>
+        </property>
+        <in name="In" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceRe">
+          <property name="Step">
+            <float>1</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerRe">
+            </decoratein>
+          </in>
+        </module>
+      </module>
+      <!-- просмотр Im-->
+      <module type="IppModules.AddConstantModuleFloat,IppModules">
+        <property name="Constant">
+          <float>-100</float>
+        </property>
+        <in name="In" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceIm">
+          <property name="Step">
+            <float>1</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerIm">
+            </decoratein>
+          </in>
+        </module>
+      </module>
+      <!-- рассчет и просмотр модуля-->
+      <module type="Modules.Transforms.ComplexModModuleFloat, Modules">
+        <in name="InRe" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <in name="InIm" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module type="IppModules.AddConstantModuleFloat,IppModules">
+          <property name="Constant">
+            <float>-150</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceMod">
+            <property name="Step">
+              <float>1</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+              <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerMod">
+              </decoratein>
+            </in>
+          </module>          
+        </module>        
+      </module>
+      <!-- рассчет и просмотр фазы-->
+      <module type="Modules.Transforms.ComplexArgModuleFloat, Modules">
+        <in name="InRe" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <in name="InIm" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module type="IppModules.AddConstantModuleFloat,IppModules">
+          <property name="Constant">
+            <float>-200</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceArg">
+            <property name="Step">
+              <float>1</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+              <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerArg">
+              </decoratein>
+            </in>
+          </module>
+        </module>        
+      </module>
+      <!-- накопление Re-->
+      <module type="Modules.SubBlockModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Modules">
+        <property name="BlockSize">
+          <int>1</int>
+        </property>
+        <property name="StartIndex">
+          <int>50</int>
+        </property>
+        <in name="In" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module id="geterodineRe" type="Modules.SetBlockSizeContinuousModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Modules">
+          <property name="BlockSize">
+            <int>128</int>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module type="IppModules.AddConstantModuleFloat,IppModules">
+            <property name="Constant">
+              <float>-250</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+            <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceModSignal">
+              <property name="Step">
+                <float>1</float>
+              </property>
+              <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+                <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerModSignal">
+                </decoratein>
+              </in>
+            </module>
+          </module>
+        </module>
+      </module>
+      <!-- накопление Im-->
+      <module type="Modules.SubBlockModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Modules">
+        <property name="BlockSize">
+          <int>1</int>
+        </property>
+        <property name="StartIndex">
+          <int>50</int>
+        </property>
+        <in name="In" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module id="geterodineIm" type="Modules.SetBlockSizeContinuousModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Modules">
+          <property name="BlockSize">
+            <int>128</int>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module type="IppModules.AddConstantModuleFloat,IppModules">
+            <property name="Constant">
+              <float>-250</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+            <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceArgSignal">
+              <property name="Step">
+                <float>1</float>
+              </property>
+              <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+                <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerArgSignal">
+                </decoratein>
+              </in>
+            </module>
+          </module>
+        </module>
+      </module>
+    </module>
+    <!-- второе фурье преобразование-->
+    <module type="Modules.Transforms.Fourier.FourierTransformModuleFloat, Modules">
+      <in name="InRe" source="geterodineRe.Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+      <in name="InIm" source="geterodineIm.Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+      <module type="IppModules.AddConstantModuleFloat,IppModules">
+        <property name="Constant">
+          <float>-250</float>
+        </property>
+        <in name="In" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceRe2">
+          <property name="Step">
+            <float>1</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerRe2">
+            </decoratein>
+          </in>
+        </module>
+      </module>
+      <module type="IppModules.AddConstantModuleFloat,IppModules">
+        <property name="Constant">
+          <float>-300</float>
+        </property>
+        <in name="In" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceIm2">
+          <property name="Step">
+            <float>1</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerIm2">
+            </decoratein>
+          </in>
+        </module>
+      </module>
+      <!-- модуль2-->
+      <module type="Modules.Transforms.ComplexModModuleFloat, Modules">
+        <in name="InRe" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <in name="InIm" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module type="IppModules.AddConstantModuleFloat,IppModules">
+          <property name="Constant">
+            <float>-350</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceMod2">
+            <property name="Step">
+              <float>1</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+              <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerMod2">
+              </decoratein>
+            </in>
+          </module>
+        </module>
+      </module>
+      <!-- фаза2-->
+      <module type="Modules.Transforms.ComplexArgModuleFloat, Modules">
+        <in name="InRe" source="OutRe" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <in name="InIm" source="OutIm" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module type="IppModules.AddConstantModuleFloat,IppModules">
+          <property name="Constant">
+            <float>-400</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceArg2">
+            <property name="Step">
+              <float>1</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+              <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerArg2">
+              </decoratein>
+            </in>
+          </module>
+        </module>
+      </module>
+    </module>
+    <module type="IppModules.Analiz.NarrowBandSpectrum.NarrowBandComplexSpectrumModule,IppModules">
+      <property name="BlockSizePower2">
+        <unsignedShort>7</unsignedShort>
+      </property>
+      <property name="Fqu">
+        <float>10000</float>
+      </property>
+      <property name="ReadBlockSizePower2">
+        <unsignedShort>7</unsignedShort>
+      </property>
+      <property name="SpectrumUnit">
+        <SpectrumUnit>Pwr</SpectrumUnit>
+      </property>
+      <property name="WinType">
+        <WindowType>Hann</WindowType>
+      </property>
+      <in name="InRe" source="geterodineRe.Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+      <in name="InIm" source="geterodineIm.Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+      <module type="IppModules.AddConstantModuleFloat,IppModules">
+        <property name="Constant">
+          <float>-300</float>
+        </property>
+        <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalsourceComplexFft">
+          <property name="Step">
+            <float>1</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerComplexFft">
+            </decoratein>
+          </in>
+        </module>
+      </module>
+    </module>
+    <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillograph">
+      <property name="Step">
+        <float>1</float>
+      </property>
+      <in name="In" source="signal.Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillographreadcontroller">
+        </decoratein>
+      </in>
+    </module>
+    <module type="ViewModules.FpsSignalReadControllerModule, ViewModules" id="fpscontroller">
+      <property name="Fps">
+        <float>25</float>
+      </property>
+    </module>
+  </performer>
+</schema>

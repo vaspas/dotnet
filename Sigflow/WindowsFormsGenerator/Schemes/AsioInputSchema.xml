@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <performer id="main">
+    <property name="ThreadPriority">
+      <ThreadPriority>AboveNormal</ThreadPriority>
+    </property>
+    <beat>
+      <and id="mainbeat">
+        <property name="CountToImpulse">
+          <int>16</int>
+        </property>
+      </and>
+    </beat>
+    <module type="SoundBlasterModules.Asio.AsioInputModule,SoundBlasterModules" id="signal">
+      <properties>
+        <BufferSize>1024</BufferSize>
+        <DriverNumber>0</DriverNumber>
+        <SampleRate>60000</SampleRate>
+      </properties>
+      <module iscollection="16" type="IppModules.ConvertIntToFloatModule,IppModules">
+        <properties>
+          <Norma>1</Norma>
+        </properties>
+        <in name="In" source="Out" type="Sigflow.Dataflow.ThreadSafeQueue`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+          <property name="MaxCapacity">
+            <int>100</int>
+          </property>          
+          <decorateout type="Sigflow.Performance.DataWriterBeat`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow" beat="mainbeat">
+          </decorateout>
+        </in>
+        <module iscollection="16" type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillograph">
+          <property name="Step">
+            <float>1</float>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillographreadcontroller">
+            </decoratein>
+          </in>
+        </module>
+        <module type="IppModules.MultiplexerModuleFloat, IppModules">
+          <in name="In[0]" source="[0].Out"  type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <in name="In[1]" source="[1].Out"  type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          <module id="ToSigPro" type="SigProModules.SignalToNodeModuleFloat, SigProModules">
+            <properties>
+              <ChannelBlockSize>1024</ChannelBlockSize>
+              <ChannelsCount>2</ChannelsCount>
+              <Frequency>48000</Frequency>
+              <NodeNumber>0</NodeNumber>
+              <SigProBufferBlocksCount>100</SigProBufferBlocksCount>
+              <StartDemand>true</StartDemand>
+            </properties>
+            <in name="In" source="Out"  type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+          </module>
+        </module>
+      </module>
+    </module>
+    <module type="ViewModules.FpsSignalReadControllerModule, ViewModules" id="fpscontroller">
+      <property name="Fps">
+        <float>1</float>
+      </property>
+    </module>
+  </performer>
+</schema>

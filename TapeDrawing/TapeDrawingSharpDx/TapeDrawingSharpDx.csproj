@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4806CA99-3E7B-48F4-9364-2E841DD4752E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TapeDrawingSharpDx</RootNamespace>
+    <AssemblyName>TapeDrawingSharpDx</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\TapeDrawingKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>..\References\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9">
+      <HintPath>..\References\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\FontCache\FontCacherDecorator.cs" />
+    <Compile Include="Cache\FontCache\FontFromGdiCreator.cs" />
+    <Compile Include="Cache\ICacher.cs" />
+    <Compile Include="Cache\LineCache\LineCacherDecorator.cs" />
+    <Compile Include="Cache\LineCache\LineCreatorArgs.cs" />
+    <Compile Include="Cache\LineCache\LineFromArgsCreator.cs" />
+    <Compile Include="Cache\TextureCache\TextureCacherDecorator.cs" />
+    <Compile Include="Cache\TextureCache\TextureCreatorArgs.cs" />
+    <Compile Include="Cache\TextureCache\TextureFromBitmapCreator.cs" />
+    <Compile Include="Cache\TextureCache\TextureFromObjectCreator.cs" />
+    <Compile Include="Cache\TextureCache\TextureFromStreamCreator.cs" />
+    <Compile Include="Clip.cs" />
+    <Compile Include="ControlTapeModel.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="DeviceDescriptor.cs" />
+    <Compile Include="DirectxGraphics.cs" />
+    <Compile Include="GraphicContext.cs" />
+    <Compile Include="Instruments\Brush.cs" />
+    <Compile Include="Instruments\Font.cs" />
+    <Compile Include="Instruments\Image.cs" />
+    <Compile Include="Instruments\InstrumentsFactory.cs" />
+    <Compile Include="Instruments\Pen.cs" />
+    <Compile Include="KeyConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shapes\BaseShape.cs" />
+    <Compile Include="Shapes\DrawRectangleAreaShape.cs" />
+    <Compile Include="Shapes\DrawRectangleShape.cs" />
+    <Compile Include="Shapes\FillAllShape.cs" />
+    <Compile Include="Shapes\FillRectangleAreaShape.cs" />
+    <Compile Include="Shapes\FillRectangleShape.cs" />
+    <Compile Include="Shapes\ImageShape.cs" />
+    <Compile Include="Shapes\LinesArrayShape.cs" />
+    <Compile Include="Shapes\LinesShape.cs" />
+    <Compile Include="Shapes\PolygonShape.cs" />
+    <Compile Include="Shapes\ShapesFactory.cs" />
+    <Compile Include="Shapes\TextShape.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TapeDrawing\TapeDrawing.csproj">
+      <Project>{E501C5C3-3B5D-4410-A14D-EDC092962809}</Project>
+      <Name>TapeDrawing</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

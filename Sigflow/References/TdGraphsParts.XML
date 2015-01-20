@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TdGraphsParts</name>
+    </assembly>
+    <members>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleBase.MinPixelsDistance">
+            <summary>
+            Минимальное расстояние между обозначениями в пикселах.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleBase.Mask">
+            <summary>
+            Маска со значениями в пределах (0:1], например если указано {0,2;0,5;1} 
+            то отображаться могут значения …1, 2,5,10,20,50,100,200,500,1000,2000…
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleBase.Diapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleBase.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="T:TdGraphsParts.Renderers.Graph.SignalRenderer`1">
+            <summary>
+            Рендерер для рисования графика
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Graph.SignalRenderer`1.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Graph.SignalRenderer`1.LineWidth">
+            <summary>
+            Ширина линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Graph.SignalRenderer`1.LineColor">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Graph.SignalRenderer`1.LineStyle">
+            <summary>
+            Стиль линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Graph.SignalRenderer`1.Source">
+            <summary>
+            Источник данных сигнала
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Graph.SignalRenderer`1.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.CodeValue">
+            <summary>
+            Значение.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.ScaleXDiapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.ScaleYDiapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.LineWidth">
+            <summary>
+            Ширина линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.LineColor">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.LineStyle">
+            <summary>
+            Стиль линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.FillColor">
+            <summary>
+            Цвет заполнения
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedRectangleRenderer.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="T:TdGraphsParts.Renderers.Graph.ISignalSource`1">
+            <summary>
+            Источник сигнала для рисования графика
+            </summary>
+        </member>
+        <member name="T:TdGraphsParts.Renderers.Simple.FillAllRenderer">
+            <summary>
+            Рендерер для заполнения слоя цветом
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Simple.FillAllRenderer.#ctor(TapeDrawing.Core.Primitives.IColor)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="color">Цвет заливки фона</param>
+        </member>
+        <member name="F:TdGraphsParts.Renderers.Simple.FillAllRenderer._color">
+            <summary>
+            Цвет заливки фона
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Simple.FillAllRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Scale.ScaleTextRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleTextRenderer.TextColor">
+            <summary>
+            Цвет
+            </summary>
+        </member>
+        <member name="T:TdGraphsParts.Renderers.Simple.TextRenderer">
+            <summary>
+            Рендерер для отображения текста
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Simple.TextRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.Text">
+            <summary>
+            Текст для отображения
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.FontName">
+            <summary>
+            Название шрифта
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.Size">
+            <summary>
+            Размер текста
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.Style">
+            <summary>
+            Стиль текста
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.Color">
+            <summary>
+            Цвет текста
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.Angle">
+            <summary>
+            Угол поворота
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.TextAlignment">
+            <summary>
+            Выравнивание текста оносительно точки
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.TextRenderer.LayerAlignment">
+            <summary>
+            Выравнивание текста на слое
+            </summary>
+        </member>
+        <member name="T:TdGraphsParts.Renderers.Simple.BorderRenderer">
+            <summary>
+            Рендерер для отображения границ
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Simple.BorderRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.Color">
+            <summary>
+            Цвет линий границ
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.Left">
+            <summary>
+            Рисовать границу слева
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.Right">
+            <summary>
+            Рисовать границу справа
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.Bottom">
+            <summary>
+            Рисовать границу снизу
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.Top">
+            <summary>
+            Рисовать границу сверху
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.LineStyle">
+            <summary>
+            Стиль линии для рисования границы
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Simple.BorderRenderer.LineWidth">
+            <summary>
+            Толщина линии для рисования границы
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.CodeValue">
+            <summary>
+            Значение.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.Diapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.LineWidth">
+            <summary>
+            Ширина линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.LineColor">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.LineStyle">
+            <summary>
+            Стиль линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedLineRenderer.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Selection.SelectedDiapazoneRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedDiapazoneRenderer.Diapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedDiapazoneRenderer.Color">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedDiapazoneRenderer.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="T:TdGraphsParts.MouseListeners.MousePressedListener">
+            <summary>
+            Обработчик мышки для работы с курсором. Реагирует на нажатую кнопку мыши.
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.CodeValue">
+            <summary>
+            Значение.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.Diapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.LineWidth">
+            <summary>
+            Ширина линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.LineColor">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.LineStyle">
+            <summary>
+            Стиль линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedSignalLineRenderer.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.CodeValue">
+            <summary>
+            Значение.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.Diapazone">
+            <summary>
+            Диапазон.
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.LineWidth">
+            <summary>
+            Ширина линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.LineColor">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.LineStyle">
+            <summary>
+            Стиль линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Selection.SelectedGridLineRenderer.Translator">
+            <summary>
+            Транслятор точек
+            </summary>
+        </member>
+        <member name="M:TdGraphsParts.Renderers.Scale.ScaleLinesRenderer.Draw(TapeDrawing.Core.IGraphicContext,TapeDrawing.Core.Primitives.IRectangle{System.Single})">
+            <summary>
+            Метод для рисования на слое.
+            </summary>
+            <param name="gr">Объект для рисования.</param>
+            <param name="rect">Область рисования.</param>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleLinesRenderer.LineWidth">
+            <summary>
+            Ширина линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleLinesRenderer.LineColor">
+            <summary>
+            Цвет линии
+            </summary>
+        </member>
+        <member name="P:TdGraphsParts.Renderers.Scale.ScaleLinesRenderer.LineStyle">
+            <summary>
+            Стиль линии
+            </summary>
+        </member>
+    </members>
+</doc>

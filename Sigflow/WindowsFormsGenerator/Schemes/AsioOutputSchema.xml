@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <performer id="main">
+    <property name="ThreadPriority">
+      <ThreadPriority>AboveNormal</ThreadPriority>
+    </property>
+    <beat>
+      <or id="mainbeat"></or>
+      </beat>
+    <module type="IppModules.Generator.CosinusGeneratorModuleFloat,IppModules">
+      <properties>
+        <BlockSize>1024</BlockSize>
+        <Value>2.514</Value>
+        <Phase>0</Phase>
+        <RelativeFrequency>0.00390625</RelativeFrequency>
+      </properties>
+      <module type="IppModules.ConvertFloatToIntModule, IppModules">
+        <properties>
+          <ScaleFactor>-28</ScaleFactor>
+        </properties>
+        <in name="In" source="Out"  type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        <module type="SoundBlasterModules.Asio.AsioOutputModule,SoundBlasterModules" id="output">
+          <properties>
+            <BufferSize>1024</BufferSize>
+            <DriverNumber>0</DriverNumber>
+            <SampleRate>96000</SampleRate>
+          </properties>
+          <in name="In[0]" source="Out"  type="Sigflow.Dataflow.ThreadSafeQueue`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            <decorateout type="Sigflow.Performance.BufferWriterBeat`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow" beat="mainbeat">
+              <properties>
+                <Load>0.5</Load>
+              </properties>
+            </decorateout>
+            <decoratein type="Sigflow.Performance.BufferReaderBeat`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow" beat="mainbeat">
+              <properties>
+                <Load>0.5</Load>
+              </properties>
+            </decoratein>
+          </in>
+        </module>
+      </module>
+    </module>
+  </performer>
+</schema>

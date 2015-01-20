@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema>
+  <performer id="main">
+    <beat id="mainbeat"/>
+    <module type="Modules.Generator.MasterFrequencyModule,Modules" beat="mainbeat">
+      <property name="IntervalMilliseconds">
+        <int>10</int>
+      </property>
+    </module>
+    <module type="IppModules.Generator.WhiteNoiseGeneratorModuleFloat,IppModules" id="whitenoise">
+      <property name="BlockSize">
+        <int>1024</int>
+      </property>
+      <property name="Value">
+        <float>1</float>
+      </property>  
+    </module>
+    <module type="IppModules.Generator.CosinusGeneratorModuleFloat,IppModules" id="signal">
+      <property name="BlockSize">
+        <int>1024</int>
+      </property>
+      <property name="Value">
+        <float>2.514</float>
+      </property>
+      <property name="Phase">
+        <float>0</float>
+      </property>
+      <property name="RelativeFrequency">
+        <float>0.4</float>
+      </property>
+    </module>
+    <module type="IppModules.AddOperatorModuleFloat,IppModules">
+      <in name="In[0]" source="whitenoise.Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+      </in>
+      <in name="In[1]" source="signal.Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+      </in>
+      <module type="IppModules.SignalResampling.SignalResamplingModule, IppModules" iscollection="2">
+        <property name="WinType">
+          <IppWinType>ippWinHann</IppWinType>
+        </property>
+        <properties>
+          <FilterTapsLen>100</FilterTapsLen>
+          <DownFactor>2</DownFactor>
+          <BlockSize>512</BlockSize>
+        </properties>
+        <in name="In" source="Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+        
+        <module type="IppModules.Analiz.NarrowBandSpectrum.NarrowBandSpectrumModule,IppModules" iscollection="2" id="ua">
+        <property name="BlockSizePower2">
+          <unsignedShort>10</unsignedShort>
+        </property>
+        <property name="Fqu">
+          <float>10000</float>
+        </property>
+        <property name="ReadBlockSizePower2">
+          <unsignedShort>10</unsignedShort>
+        </property>
+        <property name="SpectrumUnit">
+          <SpectrumUnit>Pwr</SpectrumUnit>
+        </property>
+        <property name="WinType">
+          <WindowType>Hann</WindowType>
+        </property>
+        <in name="In" source="Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <!--<in name="[0].In" source="Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>
+        <in name="[1].In" source="signal.Out" type="Sigflow.Dataflow.Buffer`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+        </in>-->
+        <module type="IppModules.Avarage.LinearAvarageModuleFloat,IppModules" iscollection="2">
+          <property name="Count">
+            <decimal>10</decimal>
+          </property>
+          <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+          </in>
+          <module type="IppModules.ToDbConverterModuleFloat,IppModules" id="todb" iscollection="2">
+            <property name="Value">
+              <int>20</int>
+            </property>
+            <property name="ThresholdGtValue">
+              <float>300</float>
+            </property>
+            <property name="ThresholdLtValue">
+              <float>-300</float>
+            </property>
+            <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+            </in>
+            <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" iscollection="2" id="signalsourcelintodb" >
+              <property name="Step">
+                <float>1</float>
+              </property>
+              <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+                <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="signalreadercontrollerlintodb">                  
+                </decoratein>
+              </in>
+            </module>
+        </module>
+        </module>
+        </module>
+      </module>
+      <module type="ViewModules.SignalSourceAdapterModule`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillograph">
+        <property name="Step">
+          <float>2</float>
+        </property>
+        <in name="In" source="Out" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow">
+          <decoratein type="ViewModules.SignalReaderController`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],ViewModules" id="oscillographreadcontroller">
+          </decoratein>
+        </in>
+      </module>
+    </module>
+    <module type="TalkModules.TalkConnectorModule, TalkModules" id="talkconnector"/>
+    <module type="ViewModules.FpsSignalReadControllerModule, ViewModules" id="fpscontroller">
+      <property name="Fps">
+        <float>25</float>
+      </property>
+    </module>
+    <module type="TalkModules.Anal13WriterModule, TalkModules" id="anal13writer">
+      <properties>
+        <DeviceId>103</DeviceId>
+      </properties>
+      <in name="In" source="todb.Out" iscollection="2" type="Sigflow.Dataflow.Block`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],Sigflow"/>
+    </module>
+  </performer>
+</schema>
